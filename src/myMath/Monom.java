@@ -1,181 +1,297 @@
-
 package myMath;
-/**
- * This class represents a simple "Monom" of shape a*x^b, where a is a real number and a is an integer (summed a none negative), 
- * see: https://en.wikipedia.org/wiki/Monomial 
- * The class implements function and support simple operations as: construction, value at x, derivative, add and multiply. 
- * @author Boaz
- *
- */
 
-public class Monom implements function
-{
-
-	//--------------Fields--------------------
-	private double _coefficient;  
-	private int _power; 
+/** This class represents a simple "Monom" of shape a*x^b, where a is a real number and a is an integer (summed a none negative), 
+* see: https://en.wikipedia.org/wiki/Monomial 
+* The class implements function and support simple operations as: construction, value at x, derivative, add and multiply. 
+* @author Boaz
+*
+*/
 
 
-	/**
-	 * A constructor that accepts values
-	 * @param a
-	 * @param b
-	 */
-	public Monom(double a, int b)
-	{
-		this.set_coefficient(a);
-		this.set_power(b);
-	}
+
+/** this class represent Monom of a*x^b-here i build functions of add that do plus of two Monoms,
+* two Monoms that do multiply, calculate the f(x) and do derivative. in addition,  i built constructions and toString
+* note that i puted exceptions in parts of the functions.
+* 
+* beside this i built functions that get string of monom in order to build polynom from string in class of polynom
+* 
+* @author shai 
+*
+*/
+
+
+
+
+public class Monom implements function{
+
+	
+	
 	
 	/**
-	 * A copy constructor 
-	 * @param ot
+	 * construction that get coefficient and power and build the monom-throw exception if the power is negitive
+	 * @param a is the coefficient of the monom 
+	 * @param b  is the power of the monom.
 	 */
-	public Monom(Monom ot) 
-	{
+	
+	
+	public Monom(double a, int b){
+		
+	try {
+			if(b>=0) {
+		    this.set_coefficient(a);
+		    this.set_power(b);
+	        }
+			else {
+				throw new Exception();
+			}
+	}
+	     catch(Exception E) {
+		      System.err.println("the power can not be negetive number");
+	}
+}
+	
+
+	/**
+	 * construction that get noting and start the monom with 0x^0
+	 * 
+	 */
+	
+	public Monom() {
+		this.set_coefficient(0);
+		this.set_power(0);
+		}
+	
+	
+	/**construction
+	 * build new monom from old monom
+	 * @param ot monom that i build new monom and copy from the old monom
+	 */
+	public Monom(Monom ot) {
 		this(ot.get_coefficient(), ot.get_power());
 	}
-
-
-	// ***************** add your code below **********************
-
-	/** 
-	 * Calculates the function f(x)
-	 * @param x
+	
+	
+	
+	/**
+	 *  
+	 * @return the power of x
 	 */
-	public double f(double x)
-	{
-		return this._coefficient*(Math.pow(x,this._power));
+	
+	public int get_power() {
+		return this._power;
 	}
 
 	/**
-	 * Derivative of the current monom
-	 * @return Derivative monom
+	 * return the coefficient of x
+	 * @return the coe..
 	 */
-	public Monom derivative() 
-	{
-		int p = this.get_power();
-		double c = this.get_coefficient ();
-		return new Monom(p*c,p-1);
-	}
-
-	/**
-	 * monom addition
-	 * @param m1
-	 * @return
-	 */
-	public Monom add (Monom m1)
-	{
-		Monom m2 = new  Monom(m1);
-		if(this._power == m2._power)
-		{
-			m2._coefficient= this._coefficient+m2._coefficient;
-		}
-		else 
-		{
-			System.out.println("You can't add this two Monoms");
-		}
-		return m2;
-	}
-
-	/**
-	 * Multiply between the current monom and another monom
-	 * @param m1
-	 * @return
-	 */
-	public Monom multiply (Monom m1)
-	{
-		Monom m2 = new  Monom(m1);
-		m2._power= m2._power+this._power;
-		m2._coefficient= m2._coefficient*this._coefficient;	
-		return m2;
-	}
-
-	/**
-	 * returns the value of coefficient
-	 * @return
-	 */
-	public double get_coefficient()
-	{
+	public double get_coefficient() {
 		return this._coefficient;
 	}
 
-
-	/**
-	 * returns the value of power
-	 * @return
+	/**f(x)
+	 * return f(x) with the formula of monom
+	 * @param x get his param and return f(x)
+	 * @return ans
 	 */
-	public int get_power() 
-	{
-		return this._power ;
+	public double f(double x) {
+
+		double answer=1458;
+		answer=this._coefficient*(Math.pow(x, this._power));
+		return answer;
 	}
 
-	/**
-	 * set the value of coefficient
-	 * @param a
+	/**derivative
+	 * do the derivative of the monom-that clear and i dont need to explain more
+	 * 
 	 */
-	private void set_coefficient(double a)
-	{
+	public void derivative() {
+		
+		if(this._power>=1) {
+			this._coefficient=this._coefficient*this._power;
+			this._power=this._power-1;
+		}
+		else if(this._power==0) {
+
+			this._coefficient=0;
+		}
+	}
+	
+	/**add
+	 * here I use add of two monoms-if the power are equal do the add else its error
+	 * @param m1 is monom the i do with him the add
+	 */
+
+	public void add(Monom m1) {
+		try {
+			if(this._power==m1._power) {
+				this._coefficient=this._coefficient+m1._coefficient;
+			}
+			else {
+				throw new Exception();
+			}
+		}
+		catch (Exception e) {
+			System.err.println("no plus of coefficient of monoms");
+		}
+
+	}
+	
+	/**multiply
+	 * here I use the multiply of two monoms-first the multiply of coefficient and than do the add of the powers
+	 * @param m1 is monom the i do with him the multiply
+	 */
+
+	public void multiply(Monom m1) {
+		this._coefficient=this._coefficient*m1._coefficient;
+		this._power=this._power+m1._power;
+	}
+	
+	
+	/**toString
+	 * print the formula of monom
+	 * 
+	 */
+
+	public String toString() {
+	return  "f(x)= "+this._coefficient+"x^"+this._power;
+	}
+
+
+	/////more function
+
+	
+	/**setminus
+	 * function setminus that use to change the polynom to minus 
+	 * if the coefficient is zero  dont set minus
+	 * sue fo subtract in polynom able class
+	 */
+	public void setminus() {
+		if(this._coefficient!=0) {
+		this._coefficient=this._coefficient*(-1);
+		this._power=this._power;
+		}
+	}
+	
+	
+	/**Monom(String s)
+	 * 
+	 * here i get string s if i get char in x go to stringToInt and do it to number after that do num
+	 * if i have "-" take him too and the - will go to the coefficient
+	 * to empty- and add the power after this the monom will be the number
+	 * 
+	 * @param s the string of the monom
+	 */
+	
+	public Monom(String s) {
+		
+			
+		double m=0;
+		int n = 0;
+		int q=0;
+		String num="";
+		char ch='-';
+		if(ch==s.charAt(0)) {
+			ch='-';
+		}
+		else {
+			ch='n';
+		}
+		for (int i = 0; i < s.length(); i++) {
+			if(q==0) {
+				if(s.charAt(i)!='x')
+					num=num+s.charAt(i);
+				else {
+					q=1;
+				}
+			}
+			if(q==1) {
+				m=stringToInt(num);
+				//System.out.println(m);
+				num="";
+				i=i+2;
+				q=2;
+
+			}
+			if(q==2){
+				num=num+s.charAt(i);
+			}
+		}
+		
+		n=(int)stringToInt(num);
+		Monom ans=new Monom(m,n);
+		if(ch=='-') {
+		this._coefficient=-m;
+		this._power=n;
+		}
+		else {
+			this._coefficient=m;
+			this._power=n;
+		}
+		
+		/**stringToInt(String s)
+		 * get the string-caliculate untill "." and than after this caliculate tne number again
+		 * its calaiculate the power too
+		 * 		
+		 * @param s to turn to number
+		 */
+			
+}
+	
+	public double stringToInt(String s) {
+    
+		
+		double num=0;
+		boolean flag=true;
+		int count=1;
+		for (int i = 0; i < s.length(); i++) {
+		if(s.charAt(i)!='-') {
+			if(flag==true && s.charAt(i)!='.') {
+				num=num+(s.charAt(i)-48);
+				if(i!=s.length()-1 && s.charAt(i+1)!='.')
+					num=num*10;
+			}
+			else {
+				flag=false;
+			}
+			if(flag==false&&s.charAt(i)!='.') {
+				num=num+(s.charAt(i)-48)/(Math.pow(10, count));
+				count++;
+			}
+		}
+
+
+		}
+		return num;
+	  }
+		
+	
+	//****************** Private Methods and Data *****************
+
+	/**
+	 * the setters of the variables
+	 * 
+	 */
+	
+	private void set_coefficient(double a){
 		this._coefficient = a;
 	}
-
-	/**
-	 * set the value of power
-	 * @param p 
-	 */
-	private void set_power(int p) 
-	{
+	private void set_power(int p) {
 		this._power = p;
 	}
 
-	/**
-	 * print monom
-	 * @return
-	 */
-	public String toString()
-	{
-		int temp_cefficient;
-		String coefficient="";
-		String monomPrint="";
 
-		if(this._coefficient%1 == 0)
-		{
-			temp_cefficient = (int)this._coefficient;
-			if(this.get_coefficient() >= 0)
-			{
-				coefficient = "+"+temp_cefficient;
-			}
-			else
-			{
-				coefficient = ""+temp_cefficient;
-			}
-		}
-		else
-		{
-			if(this.get_coefficient() >= 0)
-			{
-				coefficient = "+"+this.get_coefficient();
-			}
-			else
-			{
-				coefficient = ""+this.get_coefficient();
-			}
-		}
-		if(this.get_power() == 0)
-		{
-			monomPrint =coefficient;
-			return monomPrint;
-		}
-		else if(this.get_power() == 1)
-		{
-			monomPrint =coefficient+"x";
-			return monomPrint;
-		}
-		else
-		{
-			monomPrint =coefficient+"X^"+this.get_power();
-			return monomPrint;
-		}
-	}
+	/**
+	 * the private variabls
+	 * 
+	 */
+	private double _coefficient; // 
+	private int _power;
 
 }
+
+
+
+
+
+

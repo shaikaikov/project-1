@@ -44,7 +44,8 @@ s=br.readLine();
 			
 			
 			
-			
+			Monom m1=new Monom(3,4);
+			m1.c
 			
 			
 			
