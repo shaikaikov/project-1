@@ -101,10 +101,11 @@ public class Polynom implements Polynom_able{
 	
 	
 	public void add(Monom m1) {
-		if(this.pol.get(0).get_coefficient()==0) {
+		if(this.pol.get(0).get_coefficient()==0 && this.pol.size()<2 ) {
 			this.pol.clear();
 		}
 		for(int i=0;i<this.pol.size();i++) {
+			
 			if(this.pol.get(i).get_power()==m1.get_power()) {
 				Monom m2=new Monom(this.pol.get(i).get_coefficient()+m1.get_coefficient(),m1.get_power());
 				this.pol.set(i, m2);
@@ -112,10 +113,14 @@ public class Polynom implements Polynom_able{
 				return;
 			}
 		}
-		
+		if(m1.get_coefficient()!=0 || this.pol.isEmpty()) {
 		this.pol.add(m1);
 		this.pol.sort(comparmonom);
 		return;
+		}
+		else {
+		return;
+	         }
 	}
 
 	
@@ -156,6 +161,9 @@ public class Polynom implements Polynom_able{
 
 		}
 		this.pol.sort(comparmonom);
+		
+		
+	}
 
 /**
 * multiply
@@ -170,7 +178,7 @@ public class Polynom implements Polynom_able{
 */
 	
 	
-	}
+	
 	
 	
 	public void multiply(Polynom_able p1) {
@@ -213,7 +221,9 @@ public class Polynom implements Polynom_able{
 		Iterator <Monom> pol1=this.pol.iterator();
 		Iterator <Monom> p11=p1.iteretor();
 		while(pol1.hasNext()) {
-			if(pol1.next()!=p11.next()) {
+			Monom m1= new Monom(pol1.next());
+			Monom m11=new Monom(p11.next());
+			if(m1.get_coefficient()!=m11.get_coefficient() || m1.get_power()!=m11.get_power()) {
 				b=false;
 				break;
 			}
@@ -417,6 +427,8 @@ public class Polynom implements Polynom_able{
 	 * @param s get the string of the polynom
 	 */
 	
+
+	
 	
 	
 	public Polynom(String s) {
@@ -449,8 +461,13 @@ public class Polynom implements Polynom_able{
 		tmp=new Monom(sub);
 		this.add(tmp);
 	}
+	
 
 }
+	
+	
+
+
 
 
 
