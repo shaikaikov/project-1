@@ -6,12 +6,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class MonomTest {
-	
-	
+
+
 	//test for get double and int for constructor
 	@Test
 	public void testMonomDoubleInt() {                             //fix exception
-		   //test 1
+		//test 1
 		double a1=3;
 		int b1=4;
 		Monom m1=new Monom(3,4);
@@ -45,7 +45,7 @@ public class MonomTest {
 			fail();
 		}
 	}
-          // copy constructor of monom
+	// copy constructor of monom
 	@Test
 	public void testMonomMonom() {
 		//test 1                                                   //fix the exception
@@ -67,26 +67,48 @@ public class MonomTest {
 		if(m3.get_power()!=m4.get_power()) {
 			fail();
 		}
-	}
+		
+		
+		try {
+			Monom m5 = new Monom(1,-1);
+			fail();
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+		}
 
+/*
+		//test 3
+		try {
+			Monom m5=new Monom(252,36);
+			
+		}
+		catch(Exception E) {
+			System.err.println("the power can not be negetive number");
+		}
+*/
+
+
+
+	}
 	@Test
 	public void testGet_power() {                       //fix exception
 		//test 1
-       Monom m1=new Monom(35,0);
-       int acutalpower1=0;
-       
-       if(m1.get_power()!=acutalpower1) {
-    	   fail();
-       }
-       //test 2
-       
-       Monom m2=new Monom(35,47);
-       int acutalpower2=47;
-       
-       if(m2.get_power()!=acutalpower2) {
-    	   fail();
-       }
-	
+		Monom m1=new Monom(35,+1);
+		int acutalpower1=+1;
+
+		if(m1.get_power()!=acutalpower1) {
+			fail();
+		}
+		//test 2
+
+		Monom m2=new Monom(35,47);
+		int acutalpower2=47;
+
+		if(m2.get_power()!=acutalpower2) {
+			fail();
+		}
+
 	}
 
 
@@ -105,11 +127,11 @@ public class MonomTest {
 		if(acutal2!=m2.get_coefficient()) {
 			fail();                  
 		}
-         
-         
-				
+
+
+
 	}
-	
+
 
 	@Test
 	public void testF() {                           //fix exception
@@ -127,14 +149,14 @@ public class MonomTest {
 		if(acutal2!=value2) {
 			fail();                  
 		}
-		
-		
+
+
 	}
-	
-	
+
+
 	@Test
 	public void testDerivative() {
-	//test 1
+		//test 1
 		Monom m1=new Monom(3,4);                 //fix exception
 		m1.derivative();
 		//after derivative// 
@@ -143,11 +165,11 @@ public class MonomTest {
 		if(m1.get_coefficient()!=a1coe) {
 			fail();
 		}
-		
+
 		if(m1.get_power()!=b1power) {
 			fail();
 		}
-		
+
 		//test 2
 		Monom m2=new Monom(-634.26,0);
 		m2.derivative();
@@ -157,11 +179,11 @@ public class MonomTest {
 		if(m2.get_coefficient()!=a2coe) {
 			fail();
 		}
-		
+
 		if(m2.get_power()!=b2power) {
 			fail();
 		}
-		
+
 		//test 3
 		Monom m3=new Monom(0,56);
 		m3.derivative();
@@ -171,12 +193,12 @@ public class MonomTest {
 		if(m3.get_coefficient()!=a3coe) {
 			fail();
 		}
-		
+
 		if(m3.get_power()!=b3power) {
 			fail();
 		}
 	}
-	
+
 
 	@Test
 	public void testAdd() {
@@ -186,7 +208,7 @@ public class MonomTest {
 		m1.add(m2);
 		double coefficient1=78.67+3;
 		if(coefficient1!=m1.get_coefficient()) {
-		fail();
+			fail();
 		}
 		//test 2
 		Monom m3=new Monom(-252,2);
@@ -194,21 +216,21 @@ public class MonomTest {
 		m3.add(m4);
 		double coefficient2=3747-252;
 		if(coefficient2!=m3.get_coefficient()) {
-		fail();
+			fail();
 		}
-		
+
 		//test 3
 		Monom m5=new Monom(-252,3);
 		Monom m6=new Monom(3747,2);  ////fix                    ///fix exception
 		m5.add(m6);
-	
-		
+
+
 	}
 
 
 
 
-	
+
 	@Test
 	public void testMultiply() {
 		//test 1
@@ -223,7 +245,7 @@ public class MonomTest {
 		if(pluspower1!=m1.get_power()) {
 			fail();
 		}
-		
+
 		//test 2
 		Monom m3=new Monom(0,5);
 		Monom m4=new Monom(7.8,0);
@@ -236,11 +258,11 @@ public class MonomTest {
 		if(pluspower2!=m3.get_power()) {
 			fail();
 		}
-		
+
 	}
 
 
-	
+
 	/////return after this
 
 	@Test
@@ -248,25 +270,54 @@ public class MonomTest {
 		//test 1
 		//default constructor
 		Monom m1=new Monom();
-		
-		String s1="f(x)= 0.0^0";
-		if(s1!=m1.toString()) {
-			fail();
-		}
+
+		String expected1="f(x)= 0.0x^0";
+		String actual1=m1.toString();
+		System.out.println(expected1);
+		System.out.println(actual1);
+	    for(int i=0;i<expected1.length();i++) {
+	    	if(expected1.charAt(i)!=actual1.charAt(i)) {
+	    		fail();
+	    	}
+	    }
 		//test 2
 		Monom m2=new Monom(-3.474,15);
-		String s2="f(x)= "+0+"x^"+0;
-		if(s2!=m2.toString()) {
-			fail();
-		}
-	
+		String expected2="f(x)= -3.474x^15";
+		String actual2=m2.toString();
+		 for(int i=0;i<expected2.length();i++) {
+		    	if(expected2.charAt(i)!=actual2.charAt(i)) {
+		    		fail();
+		    	}
+		 }
 	}
-	/*
+		
 	@Test
 	public void testSetminus() {
-		fail("Not yet implemented");
+		//test 1
+		Monom m1=new Monom(-34.43,4);
+		m1.setminus();
+		double expected1=+34.43;
+		if(expected1!=m1.get_coefficient()) {
+			fail();
+		}
+		
+		//test 2
+		Monom m2=new Monom(0,4);
+		double expected2=0.00;
+		m2.setminus();
+		if(expected2!=m2.get_coefficient()) {
+			fail();
+		}
+		//test 3
+		Monom m3=new Monom(-23.63,0);
+		double expected3=23.63;
+		m3.setminus();
+		if(expected3!=m3.get_coefficient()) {
+			fail();
+		}
+		
 	}
-
+	/*
 	@Test
 	public void testMonomString() {
 		fail("Not yet implemented");
@@ -276,9 +327,10 @@ public class MonomTest {
 	public void testStringToInt() {
 		fail("Not yet implemented");
 	}
-	*/
+	 */
 
 }
+
 
 
 

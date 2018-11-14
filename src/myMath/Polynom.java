@@ -223,17 +223,25 @@ public class Polynom implements Polynom_able{
 		while(pol1.hasNext()) {
 			Monom m1= new Monom(pol1.next());
 			Monom m11=new Monom(p11.next());
-			if(m1.get_coefficient()!=m11.get_coefficient() || m1.get_power()!=m11.get_power()) {
+			if((m1.get_coefficient()==0) &&(m1.get_coefficient()==m11.get_coefficient())) {
+				b=true;
+				
+			}
+			
+			else if(m1.get_coefficient()!=m11.get_coefficient() || m1.get_power()!=m11.get_power()) {
 				b=false;
 				break;
-			}
+			
+				}
+		
+			
 			if(pol1.hasNext()!=p11.hasNext()) {
 				b=false;
 				break;	
 			}
 		}
 		return b;
-	}
+}
 	
 	/**isZero
 	 * check if the polynom is zero
@@ -270,7 +278,7 @@ public class Polynom implements Polynom_able{
 		                                                        //must be(f(x0)*f(x1)<0) if not-this is exception
 		                                                       //* after this do (x0+x1)/2=x2-if(f(x0)*f(x2)<0)-proceed in (x0+x2)/2 else if this(f(x0)*f(x2)>0)
 		                                                     // * take x2 and x1 and do (x2+x1)/2 and so on until we get |f(x2)|<eps
-		try {
+		
 		
 		if(this.f(x0)*this.f(x1)<0 && 0<eps) {
 		double a=x0;
@@ -280,7 +288,7 @@ public class Polynom implements Polynom_able{
 		  while(Math.abs(this.f(c))>eps) {
 
 			if(this.f(c)==0) {
-				return this.f(c);
+				return c;
 			}
 			else if(this.f(c)*this.f(a)<0) {
 				b=c;
@@ -292,14 +300,11 @@ public class Polynom implements Polynom_able{
 		  }
 	    }
 	}
-		else {
-			throw new Exception();
-		}
-	}
-		catch(Exception E) {
-			c=0;
-			System.err.println("this.f(x0)*this.f(x1),>0 && 0=>eps-wrong answer-the defult will be zero");
-		}
+			else {
+				throw new RuntimeException("invalid power");
+			}
+	
+		
 		
 		return c;
 		

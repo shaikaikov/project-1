@@ -36,18 +36,16 @@ public class Monom implements function{
 	
 	public Monom(double a, int b){
 		
-	try {
+
 			if(b>=0) {
 		    this.set_coefficient(a);
 		    this.set_power(b);
 	        }
 			else {
-				throw new Exception();
+				throw new RuntimeException("invalid power");
 			}
-	}
-	     catch(Exception E) {
-		      System.err.println("the power can not be negetive number");
-	}
+	
+	
 }
 	
 

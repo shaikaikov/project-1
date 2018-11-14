@@ -285,12 +285,72 @@ public class PolynomTest {
 				
 				
 			}
-/*
+
 	@Test
 	public void testMultiply() {
-		fail("Not yet implemented");
+	//test 1
+		Monom m1=new Monom(0,0);
+		Monom m2=new Monom();                 ///0*0 polynoms
+		Polynom_able p1=new Polynom();
+		Polynom_able p2=new Polynom();
+		p1.add(m1);
+		p1.multiply(p2);
+		Polynom_able p3=new Polynom();
+		if(p1.equals(p3)!=true) {
+			fail();
+		}
+		//test 2
+		Monom m3=new Monom(-548,37);
+		Monom m4=new Monom(236,373);            //p2=0 p1!=0
+		Monom m5=new Monom(125,3);
+		p1.add(m3);
+		p1.add(m4);
+		p1.add(m5);
+		p1.add(m2);
+		p1.multiply(p2);
+		if(p1.equals(p3)!=true) {
+			fail();
+		}
+		
+		//test 3
+		Monom m6=new Monom(236,0);
+		
+		Monom m9=new Monom(-56,6);
+		Monom m10=new Monom(53,7);          
+		Polynom_able p4=new Polynom();
+		p4.add(m6);
+		                                                    ///polynom p4
+		p4.add(m9);
+		p4.add(m10);
+		
+		Monom m11=new Monom(-53,575);
+		Monom m12=new Monom(24,2);                     ///polynom p4
+		Polynom_able p5=new Polynom();
+		p5.add(m11);
+		p5.add(m12);
+		
+		p4.multiply(p5);                   ///p4*p5
+		
+		
+		Monom m13=new Monom(-2809,582);
+		Monom m14=new Monom(2968,581);          
+		Monom m15=new Monom(-12508,575);
+		Monom m16=new Monom(1272,9);
+		Monom m17=new Monom(-1344,8);     
+		Monom m18=new Monom(5664,2);             ////p4*p5=p6
+		Polynom_able p6=new Polynom();
+		p6.add(m13);
+		p6.add(m14);
+		p6.add(m15);
+		p6.add(m16);
+		p6.add(m17);
+		p6.add(m18);
+		if(p6.equals(p4)!=true) {
+			fail();
+		}
+		
 	}
-*/
+
 	@Test
 	public void testEqualsPolynom_able() {
 		//test 1
@@ -358,12 +418,69 @@ public class PolynomTest {
 		}
 		
 	}
-/*
+
 	@Test
 	public void testRoot() {
-		fail("Not yet implemented");
+		//test 1
+		Monom m1=new Monom(1,2);
+		Monom m2=new Monom(-4,1);
+		Monom m3=new Monom(-5,0);
+		Polynom_able p1=new Polynom();
+		p1.add(m1);
+		p1.add(m2);                                    //Polynom p1
+		p1.add(m3);
+		
+		double actual1=p1.root(0, 15, 20);
+		double expected1=3.75;                         //root for |f(3.75)|<20
+		if(expected1!=actual1) {
+			fail();
+		}
+		double actual2=p1.root(0, 15, 3);
+		double expected2=4.6875;                        //root for |f(4.6875)|<3
+		if(expected2!=actual2) {
+			fail();
+		}
+		double actual3=p1.root(0, 15, 20);              //unequal
+		double unexpected3=4.6875;
+		if(unexpected3==actual3) {
+			fail();
+		}
+		double actual5=  p1.root(4, 10, 4);           
+		double unexpected5=5.5;                        //root f(5.5)<4
+		if(unexpected5!=actual5) {
+			fail();
+		}
+		
+		
+		//test 2
+		try {
+			double actual4=p1.root(10, 15, 20);             ///f(10)*f(15)>0
+			fail();
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+		}
+		
+		//test 3
+		
+		try {
+			double actual6=p1.root(2, 3, 20);             ///f(2)*f(3)<0
+			fail();
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+		}
+		
+		//test 4
+		
+		double actual7=  p1.root(-10, 3, 4);           
+		double unexpected7=-0.25;                       
+		if(unexpected7!=actual7) {
+			fail();
+		}
+	
 	}
-*//*
+
 	@Test
 	public void testCopy() {
 		
@@ -385,32 +502,65 @@ public class PolynomTest {
 			fail();
 		}
 	}
-*//*
+
+
 	@Test
 	public void testDerivative() {
 	//test 1
-		Monom m1=new Monom();                           //default monoms
-		Monom m2=new Monom();
-		Polynom_able p1=new Polynom();
-		p1.add(m1);
-		p1.add(m2);
-		p1.derivative();
-		if(p1.isZero()!=true) {
-			fail();
-		}
-		
-		Monom m3=new Monom(-12616.623,87);
-		Monom m4=new Monom(326.437,100);
-		Monom m3=new Monom(347,87);
-		Monom m4=new Monom(765,9);
-		Monom m4=new Monom(6,0);
-		Monom m4=new Monom(7,0);
-		Polynom_able p2=new Polynom();
-		p1.add(m3);
-		p1.add(m4);
+
+    Monom m1=new Monom();                 ///cheak if Derivative is zero
+    Polynom_able p1=new Polynom();
+    Polynom_able p=p1.derivative();
+    Polynom_able p2=new Polynom();
+    if(p.equals(p2)!=true) {
+    	fail();
+    }
+    p1.add(m1);
+    Polynom_able p0=p1.derivative();
+    if(p0.equals(p2)!=true) {
+    	fail();
+    }
+    Monom m2=new Monom(3,4);
+    p1.add(m2);
+    if(p1.equals(p2)==true) {
+    	fail();
+    }
+    
+    //test 2
+    Monom m3=new Monom(374.362,54);
+    Monom m4=new Monom(24,78);
+    Monom m5=new Monom(0,4);
+    Monom m6=new Monom(0,0);                        //polynom p3
+    Monom m7=new Monom(-57.865,7);
+    Monom m8=new Monom(5,0);
+    Polynom_able p3=new Polynom();
+    
+    p3.add(m3);
+    p3.add(m4);
+    p3.add(m5);
+    p3.add(m6);
+    p3.add(m7);
+    p3.add(m8);
+  
+    
+    
+    Monom m9=new Monom(374.362*54,53);
+    Monom m10=new Monom(24*78,77);
+    Monom m11=new Monom(0*4,3);
+    Monom m13=new Monom(-57.865*7,6);
+    Monom m14=new Monom(5*0,0);
+    Polynom_able p4=new Polynom();
+    p4.add(m9);                                  //p3 after derivative=p4
+    p4.add(m10);
+    p4.add(m11);
+    p4.add(m13);
+    p4.add(m14);
+    Polynom_able p5=  p3.derivative();            //p3 after derivative=p5
+    if(p4.equals(p5)!=true) {                       //equal
+    	fail();
+      }
 	}
-	*/
-/*
+	/*
 	@Test
 	public void testArea() {
 		fail("Not yet implemented");
@@ -420,16 +570,80 @@ public class PolynomTest {
 	public void testIteretor() {
 		fail("Not yet implemented");
 	}
-
+*/
 	@Test
 	public void testF() {
-		fail("Not yet implemented");
+		//test 1
+
+	    Monom m1=new Monom();                 ///cheak polynom zero if value zero
+	    Polynom_able p1=new Polynom();
+        double zero=0;
+        if(zero!=p1.f(0)) {
+        	fail();
+        }
+        p1.add(m1);
+        if(zero!=p1.f(0)) {
+        	fail();
+        }
+        
+        //test 2
+        Monom m2=new Monom(-437,0);
+        Monom m3=new Monom(0,0);
+        Monom m4=new Monom(0,764);
+        Monom m5=new Monom(-532,67);
+        Monom m6=new Monom(2,3);
+        Polynom_able p2=new Polynom();
+        p2.add(m2);                                       //x=-7
+        p2.add(m3);
+        p2.add(m4);
+        p2.add(m5);
+        p2.add(m6);
+        double actual1=-437*(Math.pow(-7,0))+0*(Math.pow(0, 764))+-532*(Math.pow(-7, 67))+2*(Math.pow(-7, 3));
+        if(actual1!=p2.f(-7)) {
+        	fail();
+        }
 	}
 
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		    //test 1
+		    Monom m2=new Monom(-437,0);
+	        Monom m3=new Monom(0,0);
+	        Monom m4=new Monom(0,764);
+	        Monom m5=new Monom(-532.45,67);
+	        Monom m6=new Monom(2,3);
+	        Polynom_able p1=new Polynom();
+	        p1.add(m2);                                             ///cheak equal strings
+	        p1.add(m3);
+	        p1.add(m4);
+	        p1.add(m5);
+	        p1.add(m6);
+	        String actual1=p1.toString();
+	        
+	        String expected1="f(x)=-532.45x^67+2.0x^3+-437.0x^0";
+	        for(int i=0;i<expected1.length();i++) {
+		    	if(expected1.charAt(i)!=actual1.charAt(i)) {
+		    		fail();
+		    	}
+		    }
+	        //test 2
+	        boolean flag=true;
+	        String expected2="f(x)=-532.45x^67+347.548x^3+-437.0x^0";             ///cheak unequal strings
+	        for(int i=0;i<expected2.length();i++) {
+		    	if(expected2.charAt(i)!=actual1.charAt(i)) {
+		    		flag=true;
+		    		
+		    	}
+		    	else {
+		    		flag=false;
+		    		break;
+		    	}
+		    	if(flag==false) {
+		    		fail();
+		    	}
+	  
 	}
+	/*
 
 	@Test
 	public void testPolynomString() {
@@ -437,4 +651,5 @@ public class PolynomTest {
 	}
 	*/
 
+   }
 }
