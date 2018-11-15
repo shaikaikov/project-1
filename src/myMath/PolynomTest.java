@@ -7,12 +7,9 @@ import java.util.Iterator;
 import org.junit.Test;
 
 public class PolynomTest {
-/*
-	@Test
-	public void testPolynom() {
-		fail("Not yet implemented");
-	}
-	*/
+
+
+	
     ///first i did tests for the copy and equal and add-monom in order to used them to the nexts functions.
 	
 	@Test
@@ -618,25 +615,29 @@ public class PolynomTest {
 
 	@Test
 	public void testIteretor() {
-		Monom m1=new Monom(3,1);
-		Monom m2=new Monom(3,2);
-		Monom m3=new Monom(-85.352,0);
-		Polynom_able p1=new Polynom();
-		p1.add(m1);
-		p1.add(m2);
-		p1.add(m3);
-		
-		Iterator<Monom> p2=p1.iteretor();
-		Monom m4=new Monom(3,1);
-		Monom m5=new Monom(3,2);
-		Monom m6=new Monom(-85.352,0);
-		Polynom_able p3=new Polynom();
-		p3.add(m4);
-		p3.add(m5);
-		p3.add(m6);
-		if(m4!=p2.next()||m5!=p2.next()||m6!=p2.next()) {
-			fail();
-		}
+		    Monom m2=new Monom(-437,0);
+	        Monom m3=new Monom(47,37);
+	        Monom m4=new Monom(327,7);
+	        Polynom_able p1=new Polynom();
+	        p1.add(m2);
+	        p1.add(m3);
+	        p1.add(m4);
+	        
+	        Iterator<Monom> it=p1.iteretor();
+	        Monom m5=new Monom(it.next());
+	        if(m5.get_coefficient()!=47 ||m5.get_power()!=37) {
+	        	fail();
+	        }
+	        Monom m6=new Monom(it.next());
+	        if(m6.get_coefficient()!=327 ||m6.get_power()!=7) {
+	        	fail();
+	        }
+	        Monom m7=new Monom(it.next());
+	        if(m7.get_coefficient()!=-437 ||m7.get_power()!=0) {
+	        	fail();
+	        }
+	        
+	  
 	}
 
 	@Test
@@ -710,14 +711,46 @@ public class PolynomTest {
 		    		fail();
 		    	}
 	  
-	}
-	/*
+         	}
+	  }
+	
 
 	@Test
 	public void testPolynomString() {
-		fail("Not yet implemented");
+		//test 1
+		
+		Polynom_able p1=new Polynom("25x^2-156x^61+125.163x^6");
+		
+		
+		
+	    Monom m2=new Monom(25,2);
+        Monom m3=new Monom(-156,61);
+        Monom m4=new Monom(125.163,6);
+        Polynom_able p2=new Polynom();
+        p2.add(m2);
+        p2.add(m3);
+        p2.add(m4);
+        if(p2.equals(p1)!=true) {
+        	fail();
+        }
+        
+        //test 2
+        
+        Monom m5=new Monom(-4,1);
+        Monom m6=new Monom(6,0);
+        Monom m7=new Monom(437,6);
+        Polynom_able p3=new Polynom();
+        p3.add(m5);
+        p3.add(m6);
+        p3.add(m7);
+        
+        Polynom_able p4=new Polynom("-4x+6+437x^6");
+        if(p4.equals(p3)!=true) {
+        	fail();
+        }
+        
 	}
-	*/
+	
 
-   }
+   
 }

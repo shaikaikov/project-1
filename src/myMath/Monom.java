@@ -195,29 +195,58 @@ public class Monom implements function{
 		else {
 			ch='n';
 		}
+		
+		
+		
+		
 		for (int i = 0; i < s.length(); i++) {
 			if(q==0) {
-				if(s.charAt(i)!='x')
+				if(s.charAt(i)!='x') {
 					num=num+s.charAt(i);
-				else {
-					q=1;
 				}
-			}
+					if(i==s.length()-1 && s.charAt(i)!='x') {
+						q=1;
+					
+					}
+					if(s.charAt(i)=='x') {
+						q=1;
+						
+					}
+						
+				}
+				
 			if(q==1) {
+			
+				
 				m=stringToInt(num);
-				//System.out.println(m);
-				num="";
-				i=i+2;
-				q=2;
-
-			}
+				num="0";
+				
+				if(i==s.length()-1 && s.charAt(i)=='x') {
+					i=i+0;
+					num="1";
+				}
+				if(s.charAt(i)=='x') {
+					if(i==s.length()-1) {
+						num="1";
+						
+					}
+					else {
+					q=2;
+					i=i+2;
+					num="";
+				}
+					}
+			
+				
+					  }
+			
 			if(q==2){
 				num=num+s.charAt(i);
 			}
 		}
 		
+		
 		n=(int)stringToInt(num);
-		Monom ans=new Monom(m,n);
 		if(ch=='-') {
 		this._coefficient=-m;
 		this._power=n;
@@ -225,7 +254,9 @@ public class Monom implements function{
 		else {
 			this._coefficient=m;
 			this._power=n;
-		}
+          }
+		
+}
 		
 		/**stringToInt(String s)
 		 * get the string-caliculate untill "." and than after this caliculate tne number again
@@ -234,7 +265,7 @@ public class Monom implements function{
 		 * @param s to turn to number
 		 */
 			
-}
+
 	
 	public double stringToInt(String s) {
     
@@ -246,20 +277,25 @@ public class Monom implements function{
 		if(s.charAt(i)!='-') {
 			if(flag==true && s.charAt(i)!='.') {
 				num=num+(s.charAt(i)-48);
+				
 				if(i!=s.length()-1 && s.charAt(i+1)!='.')
 					num=num*10;
+				
 			}
 			else {
 				flag=false;
 			}
+			
 			if(flag==false&&s.charAt(i)!='.') {
 				num=num+(s.charAt(i)-48)/(Math.pow(10, count));
 				count++;
+				
 			}
 		}
 
 
 		}
+		
 		return num;
 	  }
 		

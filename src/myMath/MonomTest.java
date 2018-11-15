@@ -78,14 +78,8 @@ public class MonomTest {
 		}
 
 /*
-		//test 3
-		try {
-			Monom m5=new Monom(252,36);
-			
-		}
-		catch(Exception E) {
-			System.err.println("the power can not be negetive number");
-		}
+		
+	
 */
 
 
@@ -317,19 +311,50 @@ public class MonomTest {
 		}
 		
 	}
-	/*
+	
 	@Test
 	public void testMonomString() {
-		fail("Not yet implemented");
+		//test 1
+		Monom m1=new Monom("-4x^2");
+		if(m1.get_coefficient()!=-4 || m1.get_power()!=2) {
+			fail();
+		}
+		//test 2                                                       //the tests on StringtoInt too.
+		Monom m2=new Monom("26x^7");
+		if(m2.get_coefficient()!=26 || m2.get_power()!=7) {
+			fail();
+		}
+		
+		//test 3
+		Monom m3=new Monom("-4x^0"); 
+			if(m3.get_coefficient()!=-4 || m3.get_power()!=0) {
+				fail();
+			}
+			
+		//test 4
+			Monom m4=new Monom("-241"); 
+			if(m4.get_coefficient()!=-241 || m4.get_power()!=0) {
+				fail();
+			}
+		//test 5
+			Monom m5=new Monom("-4x"); 
+			if(m5.get_coefficient()!=-4 || m5.get_power()!=1) {
+				fail();
+			}
+			//test 6
+			/*
+			Monom m6=new Monom("x"); 
+			System.out.println(m6);
+			if(m6.get_coefficient()!=-1 || m6.get_power()!=1) {
+				fail();
+			}
+			*/
+		}
+		
 	}
 
-	@Test
-	public void testStringToInt() {
-		fail("Not yet implemented");
-	}
-	 */
 
-}
+
 
 
 

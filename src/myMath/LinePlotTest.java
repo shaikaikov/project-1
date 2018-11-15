@@ -16,16 +16,29 @@ public class LinePlotTest extends JFrame {
     public LinePlotTest() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(600, 400);
-        Polynom pol = new Polynom("3x^2");
+        Polynom_able pol = new Polynom("0.2x^4-1.5x^3+3.0x^2-1x^1-5");
+        Polynom_able pol2 = new Polynom("-0.2x^4+1.5x^3-3.0x^2+1x^1+5");
+        System.out.println(pol2.area(-0.932, 4.822, 0.01));
         DataTable data = new DataTable(Double.class, Double.class);
         DataTable data_kizon = new DataTable(Double.class, Double.class);
-        for (double x = -5.0; x <= 5.0; x+=0.25) {
+        for (double x = -2.0; x <= 6.0; x+=0.25) {
             double y = pol.f(x);
             data.add(x, y);
         }
-        data_kizon.add(1.0,1.0);
-        XYPlot plot = new XYPlot(data);
-        plot.add(data_kizon);                             ///put red point
+        data_kizon.add(0.25,-5.086);
+        XYPlot plot = new XYPlot(data);                  
+        plot.add(data_kizon);                                                   ///put red points
+        
+        data_kizon.add(1.75,-3.72577);
+        XYPlot plot1 = new XYPlot(data);                  
+        plot1.add(data_kizon);
+        
+        data_kizon.add(3.75,-6.113);
+        XYPlot plot2 = new XYPlot(data);                  
+        plot2.add(data_kizon);
+        
+        
+        
         getContentPane().add(new InteractivePanel(plot));
         LineRenderer lines = new DefaultLineRenderer2D();
         plot.setLineRenderers(data, lines);
@@ -40,4 +53,11 @@ public class LinePlotTest extends JFrame {
         LinePlotTest frame = new LinePlotTest();
         frame.setVisible(true);
     }
+    
+    
+    
+    
+    
+    
+    
 }
