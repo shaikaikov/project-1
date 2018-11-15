@@ -20,34 +20,34 @@ import java.io.PrintWriter;
 			// TODO Auto-generated method stub
 			
 			
-	
-			StringBuilder sb=new StringBuilder();
-			PrintWriter wp=new PrintWriter(new File("C:\\a\\shai.txt"));
-			sb.append("htxsh");
-			wp.write("12345\n");
-			wp.append("tsahi");
-			wp.close();
-			wp.write("12345\n");
-			wp.close();
-			File file=new File("C:\\a\\shai.txt");
-			BufferedReader br=new BufferedReader(new FileReader(file));
-			String s=br.readLine();
-			
-			System.out.println(s);
-			s=br.readLine();
-			
-			System.out.println(s);
-			
-s=br.readLine();
-			
-			System.out.println(s);
-			
-			
-			
-			Monom m1=new Monom(3,4);
-			m1.c
-			
-			
+//	
+//			StringBuilder sb=new StringBuilder();
+//			PrintWriter wp=new PrintWriter(new File("C:\\a\\shai.txt"));
+//			sb.append("htxsh");
+//			wp.write("12345\n");
+//			wp.append("tsahi");
+//			wp.close();
+//			wp.write("12345\n");
+//			wp.close();
+//			File file=new File("C:\\a\\shai.txt");
+//			BufferedReader br=new BufferedReader(new FileReader(file));
+//			String s=br.readLine();
+//			
+//			System.out.println(s);
+//			s=br.readLine();
+//			
+//			System.out.println(s);
+//			
+//s=br.readLine();
+//			
+//			System.out.println(s);
+//			
+//			
+//			
+//			Monom m1=new Monom(3,4);
+//			m1.c
+//			
+			Monom m5 = new Monom(1,-1); 
 			
 			
 			

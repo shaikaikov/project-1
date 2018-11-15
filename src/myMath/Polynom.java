@@ -301,7 +301,7 @@ public class Polynom implements Polynom_able{
 	    }
 	}
 			else {
-				throw new RuntimeException("invalid power");
+				throw new RuntimeException("invalid root");
 			}
 	
 		
@@ -356,24 +356,26 @@ public class Polynom implements Polynom_able{
 	@Override
 	public double area(double x0, double x1, double eps) {
 		double sum=0;
-		try {
-			
+		if(x0==x1) {
+			return 0;
+		}
+		
 		if(0<=this.f(x0) && 0<=this.f(x1) && 0<eps) {
 		double e=eps*0.00001;
 		
+		
 		  for(double xi=x0;xi<x1;xi+=e) {
 			sum=sum+ e*this.f(xi);
+			
 		  }
-		}
 		
-		else {
-			throw new Exception();
-		}
+		
+		
 	}
-		catch(Exception E) {
-			sum=-1;
-			System.err.println("need to be 0<eps,f(x0) and f(x1) bigger and equal to 0 the sum will be(defult) -1");
-		}
+		
+			else {
+				throw new RuntimeException("invalid area-need to be above the axis of x");
+			}
 		
 		return sum;
 	}
@@ -382,7 +384,7 @@ public class Polynom implements Polynom_able{
 	/**Iterator
 	 * build new Iterator of the polynom
 	 * 
-	 * 
+	 * @return polo-iterator
 	 */
 	
 	

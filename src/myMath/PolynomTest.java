@@ -2,6 +2,8 @@ package myMath;
 
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
+
 import org.junit.Test;
 
 public class PolynomTest {
@@ -560,17 +562,83 @@ public class PolynomTest {
     	fail();
       }
 	}
-	/*
+	
 	@Test
 	public void testArea() {
-		fail("Not yet implemented");
+		//test 1
+		Monom m1=new Monom(3,1);
+		Monom m2=new Monom(3,2);
+		Monom m3=new Monom(-85.352,0);
+		Polynom_able p1=new Polynom();
+		p1.add(m1);
+		p1.add(m2);
+		p1.add(m3);
+		int actual1=(int)p1.area(10, 15, 20);
+		int expected1=2135;
+		if(actual1!=expected1) {
+			fail();
+		}
+		//test 2
+	
+		
+		try {
+			double actual2=p1.area(2, 3, 20);           //f(2) and f(3)<0
+			fail();
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+		}
+		
+		try {
+			double actual3=p1.area(2, 10, 20);           //f(2)<0 and f(10)>0
+			fail();
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+		}
+		//test 3
+        Monom m4=new Monom(1,2);
+        Polynom_able p2=new Polynom();
+        p2.add(m4);
+    	int actual4=(int)p2.area(4, 5, 5);     ///last test for x^2
+		int expected4=20;
+		if(actual4!=expected4) {
+			fail();
+		}
+		//test 4
+		
+		int actual5=(int)p2.area(0, 0, 10);
+		int expected5=0;                           //test for area zero
+		if(actual5!=expected5) {
+			fail();
+		}
+		
 	}
+
 
 	@Test
 	public void testIteretor() {
-		fail("Not yet implemented");
+		Monom m1=new Monom(3,1);
+		Monom m2=new Monom(3,2);
+		Monom m3=new Monom(-85.352,0);
+		Polynom_able p1=new Polynom();
+		p1.add(m1);
+		p1.add(m2);
+		p1.add(m3);
+		
+		Iterator<Monom> p2=p1.iteretor();
+		Monom m4=new Monom(3,1);
+		Monom m5=new Monom(3,2);
+		Monom m6=new Monom(-85.352,0);
+		Polynom_able p3=new Polynom();
+		p3.add(m4);
+		p3.add(m5);
+		p3.add(m6);
+		if(m4!=p2.next()||m5!=p2.next()||m6!=p2.next()) {
+			fail();
+		}
 	}
-*/
+
 	@Test
 	public void testF() {
 		//test 1
